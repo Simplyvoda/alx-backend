@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 This module contains a function
-that returns the start and end index
-to return in a list
+that returns items from a dataset
+based on start and end index specified
 """
 import csv
 import math
