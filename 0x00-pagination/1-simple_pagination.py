@@ -6,8 +6,7 @@ to return in a list
 """
 import csv
 import math
-from typing import List
-from typing import Tuple
+from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int]:
@@ -40,4 +39,21 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            pass
+        """
+        Handles task 1 requirement
+        """
+        assert isinstance(page, int) and page > 0, \
+            "Page number should be a positive integer"
+        assert isinstance(page_size, int) and page_size > 0, \
+            "Page size should be a positive integer"
+
+        self.__page = page
+        self.__page_size = page_size
+
+        start_index, end_index = index_range(page, page_size)
+        dataset = self.dataset()
+
+        if start_index >= len(dataset):
+            return []
+
+        return dataset[start_index:end_index]
