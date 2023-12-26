@@ -57,3 +57,19 @@ class Server:
             return []
 
         return dataset[start_index:end_index]
+
+    def get_hyper(self, page: int = 1, page_size: int = 10):
+        """
+        Handle task 2 requirement
+        """
+        assert isinstance(page, int) and page > 0, \
+            "Page number should be a positive integer"
+        assert isinstance(page_size, int) and page_size > 0, \
+            "Page size should be a positive integer"
+
+        self.__page = page
+        self.__page_size = page_size
+
+        data = self.get_page(page, page_size)
+        
+        if page + 1 * page_size > len
