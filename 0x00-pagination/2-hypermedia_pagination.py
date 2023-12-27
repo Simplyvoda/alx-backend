@@ -5,7 +5,7 @@ That handle pagination of a dataset
 """
 import csv
 import math
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Union
 
 
 def index_range(page: int, page_size: int) -> Tuple[int]:
@@ -58,7 +58,7 @@ class Server:
         return dataset[start_index:end_index]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> \
-            Dict[Union[List, int, str]]:
+            Dict[str, Union[int, List[Union[str, int]], int]]:
         """
         Handle task 2 requirement
         """
