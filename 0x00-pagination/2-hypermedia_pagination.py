@@ -80,7 +80,7 @@ class Server:
             dict_page_size = self.__page_size
             dict_next_page = self.__page + 1
 
-        dict_total_pages = round(len(complete_data)/self.__page_size)
+        dict_total_pages = math.ceil(len(complete_data)/self.__page_size)
 
         if self.__page == 1:
             dict_prev_page = None
