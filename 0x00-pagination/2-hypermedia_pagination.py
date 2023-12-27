@@ -71,5 +71,24 @@ class Server:
         self.__page_size = page_size
 
         data = self.get_page(page, page_size)
+        complete_data = self.dataset()
+
+        if len(data) == 0:
+            dict_page_size = 0
+            dict_next_page = None
+        else:
+            dict_page_size = self.__page_size
+            dict_next_page = self.__page + 1
+
+        dict_total_pages = round(len(complete_data)/self.__page_size)
         
-        if page + 1 * page_size > len
+        if self.__page == 1:
+            dict_prev_page = None
+        else:
+            dict_prev_page = self.__page - 1
+
+        new_dict = {'page_size': dict_page_size, 'page': self.__page,\
+                'data': data, 'next_page': dict_next_page,\
+                'prev_page': dict_prev_page, 'total_pages': dict_total_pages}
+
+        return new_dict
