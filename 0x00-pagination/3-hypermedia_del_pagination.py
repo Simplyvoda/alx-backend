@@ -39,5 +39,27 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-            pass
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict[str, Union[int, List[List[str]]]]:
+    indexed_data = self.indexed_dataset()
+
+    if index is None:
+        index = 0
+
+    assert index >= 0, "Index should be a non-negative integer"
+
+    page_data = []
+    next_index = None
+
+    for i in range(index, len(indexed_data)):
+        if indexed_data.get(i):
+            page_data.append(indexed_data[i])
+            if len(page_data) == page_size:
+                next_index = i + 1
+                break
+
+    return {
+        'index': index,
+        'data': page_data,
+        'page_size': len(page_data),
+        'next_index': next_index
+    }
