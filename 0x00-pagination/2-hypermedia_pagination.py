@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-This module contains a function
-that returns the start and end index
-to return in a list
+This module contains functions
+That handle pagination of a dataset
 """
 import csv
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 
 def index_range(page: int, page_size: int) -> Tuple[int]:
@@ -58,7 +57,8 @@ class Server:
 
         return dataset[start_index:end_index]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10):
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> \
+            Dict[Union[List, int, str]]:
         """
         Handle task 2 requirement
         """
@@ -81,14 +81,15 @@ class Server:
             dict_next_page = self.__page + 1
 
         dict_total_pages = round(len(complete_data)/self.__page_size)
-        
+
         if self.__page == 1:
             dict_prev_page = None
         else:
             dict_prev_page = self.__page - 1
 
-        new_dict = {'page_size': dict_page_size, 'page': self.__page,\
-                'data': data, 'next_page': dict_next_page,\
-                'prev_page': dict_prev_page, 'total_pages': dict_total_pages}
+        new_dict = {'page_size': dict_page_size, 'page': self.__page,
+                    'data': data, 'next_page': dict_next_page,
+                    'prev_page': dict_prev_page,
+                    'total_pages': dict_total_pages}
 
         return new_dict
