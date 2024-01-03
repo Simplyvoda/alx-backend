@@ -24,15 +24,20 @@ class FIFOCache(BaseCaching):
         Assigns to the self.cache_data dict
         the item value for the key
         Dict[Key] = Value
+        Checks if the dict has exceeded max size
+        and deletes using FIFO policy
         '''
-        if key is not None and item is not None:
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                first_key = list(self.cache_data.keys())[0]
-                print(f"DISCARD: {first_key}\n")
-                del self.cache_data[first_key]
+        if key is None or item is None:
+            return
 
-            self.cache_data[key] = item
+        self.cache_data[key] = item
+
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            first_key = list(self.cache_data.keys())[0]
+            print(f"DISCARD: {first_key}\n")
+            del self.cache_data[first_key]
             return self.cache_data
+        return self.cache_data
 
     def get(self, key):
         '''
