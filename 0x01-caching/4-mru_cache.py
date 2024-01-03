@@ -42,7 +42,7 @@ class MRUCache(BaseCaching):
             current_time = time.time()
             min_diff_key = None
             min_time_difference = float('inf')
-            
+
             # looping through values to find the oldest time
             for cache_key, cache_time in list(self._temp_dict.items())[:-1]:
                 time_difference = current_time - cache_time
