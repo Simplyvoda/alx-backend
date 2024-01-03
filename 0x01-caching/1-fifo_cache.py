@@ -4,6 +4,9 @@ This module contains a function
 that inherits from BaseCaching
 '''
 
+from collections import OrderedDict
+
+
 BaseCaching = __import__('base_caching').BaseCaching
 
 
@@ -14,6 +17,7 @@ class FIFOCache(BaseCaching):
     '''
     def __init__(self):
         super().__init__()
+        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         '''
