@@ -22,12 +22,12 @@ class FIFOCache(BaseCaching):
         Dict[Key] = Value
         '''
         if key is not None and item is not None:
-            self.cache_data[key] = item
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 first_key = list(self.cache_data.keys())[0]
                 print(f"DISCARD: {first_key}\n")
-                del (self.cache_data[first_key])
-                return self.cache_data
+                del self.cache_data[first_key]
+
+            self.cache_data[key] = item
             return self.cache_data
 
     def get(self, key):
