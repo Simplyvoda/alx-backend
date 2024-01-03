@@ -35,7 +35,9 @@ class FIFOCache(BaseCaching):
     if len(self.cache_data) > BaseCaching.MAX_ITEMS:
       first_key = list(self.cache_data.keys())[0]
       print(f"DISCARD: {first_key}\n")
-      self.cache_data.pop(first_key)
+      del self.cache_data[first_key]
+      return self.cache_data
+    return self.cache_data
 
   def get(self, key):
     '''
