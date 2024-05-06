@@ -1,8 +1,9 @@
 # Queuing Systems in Js
 
-## Learning Objectives
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+Learning Objectives
 ---
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
 
 - How to run a Redis server on your machine
 - How to run simple operations with the Redis client
