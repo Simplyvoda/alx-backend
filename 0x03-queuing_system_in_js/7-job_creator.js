@@ -1,4 +1,3 @@
-#!usr/bin/dev yarn
 import kue from 'kue';
 
 const queue = kue.createQueue();
